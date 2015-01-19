@@ -1,0 +1,23 @@
+body,html {
+    background: #eee;
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    background-color: #f6f6f6;
+    border: 1px solid #dfdfdf;
+    padding: 30px 28px;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.copyright {
+    font-size: 11px;
+    padding-left: 20px;
+    color: #B5B5B5;
+}

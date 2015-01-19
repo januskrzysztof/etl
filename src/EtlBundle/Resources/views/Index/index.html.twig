@@ -1,0 +1,9 @@
+{% extends '@Etl/layout.html.twig' %}
+
+{% block body %}
+    <h4>{{ "content.generate"|trans }}</h4>
+
+    <a href="{{ path("generate", {"name": "iPhone 5S szary"}) }}" class="btn btn-success">iPhone 5S szary</a>
+    <a href="{{ path("generate", {"name": "Nikon D32000 czarny"}) }}" class="btn btn-info">Nikon D32000 czarny</a>
+    <a href="{{ path("generate", {"name": "Toshiba P75-A7200"}) }}" class="btn btn-danger">Toshiba P75-A7200</a>
+{% endblock %}

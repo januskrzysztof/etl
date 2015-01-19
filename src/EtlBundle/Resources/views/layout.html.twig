@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap.min.css", absolute=true) }}" />#}
+        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap-theme.min.css", absolute=true) }}" />#}
+        {#<link rel="stylesheet" type="text/css" href="{{ asset('bundles/framework/css/structure.css', absolute=true) }}"/>#}
+        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/style.css", absolute=true) }}"/>#}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico', absolute=true) }}" />
+</head>
+<body>
+<div id="content">
+    <div class="header clear-fix">
+        <h2>{{ "header.title"|trans }}</h2>
+    </div>
+    <div class="panel">
+        {% block body %}{% endblock %}
+    </div>
+    <div class="footer">
+        <p class="copyright">Created by: <i>Krzysztof Januś</i> & <i>Jakub Krawczyk</i></p>
+    </div>
+</div>
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/etl/js/jquery-1.11.2.min.js', absolute=true) }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/etl/js/bootstrap.min.js', absolute=true) }}"></script>
+{% endblock %}
+</body>
+</html>
