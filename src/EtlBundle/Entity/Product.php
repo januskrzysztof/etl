@@ -58,6 +58,16 @@ class Product {
         $this->comments = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * @param string $name
+     */
     public function setName($name) {
         $this->name = $name;
     }

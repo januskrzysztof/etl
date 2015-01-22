@@ -1,0 +1,26 @@
+{% extends '@Etl/layout.html.twig' %}
+
+{% block title %}{{ "product.remove"|trans({'%name%': name}) }}{% endblock %}
+
+{% block body %}
+<div class="product">
+    <a href="{{ path('home') }}" class="back_link">{{ 'link_back'|trans }}</a>
+    {% if success == true %}
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ "success.productDeleted"|trans({'%name%': name}) }}
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="{{ path('product_generate', {'name': name}) }}" class="btn btn-success">{{ 'generate_again'|trans }}</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            {{ messages }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

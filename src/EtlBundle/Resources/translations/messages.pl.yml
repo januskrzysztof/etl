@@ -10,6 +10,13 @@ content:
 product:
   features: Cechy produktu
   reviews: Opinie produktu
+  delete: Usuń ten produkt z bazy
+  remove: Usuwanie produktu: '%name%'
+
+success:
+  productDeleted: Produkt: '%name%' został prawidłowo usunięty!
+
+generate_again: Wygeneruj jeszcze raz
 
 advantages: Zalety
 disadvantages: Wady
@@ -25,3 +32,6 @@ form:
   name:
     label: Lub wpisz nazwę produktu i znajdź pierwszy z nich
     placeholder: Nazwa produktu
+
+ex:
+  cannotRemoveProduct: Ten produkt nie istnieje jeszcze w bazie.

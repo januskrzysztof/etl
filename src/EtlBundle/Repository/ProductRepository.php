@@ -3,7 +3,7 @@
 namespace EtlBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\UnexpectedResultException;
 use EtlBundle\Entity\Product;
 use Exception;
 
@@ -20,6 +20,10 @@ class ProductRepository extends EntityRepository {
         return $this->findOneBy(['name' => $name]) !== null;
     }
 
+    /**
+     * @param string $name
+     * @return Product|null
+     */
     public function getProduct($name) {
         $query = $this->createQueryBuilder('product')
             ->select('product, comments, image, features, reviews')
@@ -32,8 +36,26 @@ class ProductRepository extends EntityRepository {
 
         try {
             return $query->getQuery()->getSingleResult();
-        } catch (NoResultException $ex) {
+        } catch (UnexpectedResultException $ex) {
             return null;
+        }
+    }
+
+    /**
+     * @param Product $product
+     * @throws Exception
+     */
+    public function delete(Product $product) {
+        $em = $this->getEntityManager();
+        $em->beginTransaction();
+
+        try {
+            $em->remove($product);
+            $em->flush();
+            $em->commit();
+        } catch (Exception $ex) {
+            $em->rollback();
+            throw $ex;
         }
     }
 

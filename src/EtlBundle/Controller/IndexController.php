@@ -65,12 +65,37 @@ class IndexController extends Controller {
     }
 
     /**
-     * @Route("/product/delete/{$name}", name="product_delete")
+     * @Route("/product/delete/{id}", name="product_delete",
+     *      requirements={"id"="\d+"}
+     * )
+     * @Template()
      *
-     * @param string $name
+     * @param string $id
      * @return Response
      */
-    public function deleteAction($name) {
-        return new Response("Delete product: ".$name);
+    public function deleteAction($id) {
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $product    = $repository->find((int) $id);
+        $success    = false;
+        $messages   = null;
+
+        if ($product !== null) {
+            $name = $product->getName();
+            try {
+                $repository->delete($product);
+                $success = true;
+            } catch (Exception $ex) {
+                $messages = $ex->getMessage();
+            }
+        } else {
+            $name = '';
+            $messages = $this->get('translator')->trans('ex.cannotRemoveProduct');
+        }
+
+        return [
+            'name'     => $name,
+            'success'  => $success,
+            'messages' => $messages
+        ];
     }
 }

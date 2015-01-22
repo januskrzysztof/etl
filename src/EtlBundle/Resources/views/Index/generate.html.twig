@@ -3,8 +3,14 @@
 
 {% block body %}
 <div class="product">
+    <div>
+        <div class="pull-left"><a href="{{ path('home') }}" class="back_link">{{ 'link_back'|trans }}</a></div>
+        <div class="pull-right">
+            <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-danger">{{ 'product.delete'|trans }}</a>
+        </div>
+        <div class="clear"></div>
+    </div>
     {% if product != null %}
-    <a href="{{ path('home') }}" class="back_link">{{ 'link_back'|trans }}</a>
     <div class="row">
         <div class="col-md-3"><img src="{{ product.image.uri }}" /></div>
         <div class="col-md-9">
