@@ -4,6 +4,7 @@ namespace EtlBundle\Entity\Product\Comment;
 
 use Doctrine\ORM\Mapping as ORM;
 use EtlBundle\Entity\Product\Comment;
+use EtlBundle\Entity\ToArrayInterface;
 use InvalidArgumentException;
 
 /**
@@ -13,7 +14,7 @@ use InvalidArgumentException;
  * @ORM\Entity()
  * @ORM\Table(name="products_comments_reviews")
  */
-class Review {
+class Review implements ToArrayInterface {
     const TYPE_ADVANTAGE = 1;
     const TYPE_DISADVANTAGE = 2;
 
@@ -85,5 +86,15 @@ class Review {
      */
     public function setComment(Comment $comment) {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() {
+        return [
+            'type' => $this->type === self::TYPE_ADVANTAGE ? 'advantage' : 'disadvantage',
+            'review' => $this->review
+        ];
     }
 }

@@ -7,6 +7,7 @@
         <div class="pull-left"><a href="{{ path('home') }}" class="back_link">{{ 'link_back'|trans }}</a></div>
         <div class="pull-right">
             <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-danger">{{ 'product.delete'|trans }}</a>
+            <a href="{{ path('product_csv', {'id': product.id}) }}" class="btn btn-info">Csv</a>
         </div>
         <div class="clear"></div>
     </div>

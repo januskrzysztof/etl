@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use EtlBundle\Entity\Product\Comment\Review;
 use EtlBundle\Entity\Product;
+use EtlBundle\Entity\ToArrayInterface;
+use EtlBundle\Logic\ObjectToArray;
 use InvalidArgumentException;
 use DateTime;
 
@@ -16,7 +18,7 @@ use DateTime;
  * @ORM\Entity()
  * @ORM\Table(name="products_comments")
  */
-class Comment {
+class Comment implements ToArrayInterface {
     const BUY_CONFIRMED = 1;
     const NOT_CONFIRMED = 2;
 
@@ -221,5 +223,17 @@ class Comment {
      */
     public function getUseful() {
         return $this->useful;
+    }
+
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'comment' => $this->comment,
+            'author' => $this->author,
+            'confirmed' => $this->confirmed == self::BUY_CONFIRMED ? 'buy confirmed' : 'not confirmed',
+            'date' => $this->createdAt->format('d.m.Y'),
+            'useful' => $this->useful,
+            'rate' => $this->rate,
+        ];
     }
 }

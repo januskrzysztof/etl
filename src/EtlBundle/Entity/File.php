@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="files")
  */
-class File {
+class File implements ToArrayInterface {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -85,5 +85,18 @@ class File {
      */
     public function getUri($prefix = '', $suffix = '') {
         return $this->basePath.$prefix.$this->filename.$suffix.'.'.$this->ext;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'filename' => $this->filename,
+            'base_path' => $this->basePath,
+            'ext' => $this->ext,
+            'uri' => $this->getUri()
+        ];
     }
 }

@@ -4,6 +4,7 @@ namespace EtlBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 use EtlBundle\Entity\Product;
+use EtlBundle\Entity\ToArrayInterface;
 
 /**
  * Class Feature
@@ -12,7 +13,7 @@ use EtlBundle\Entity\Product;
  * @ORM\Entity()
  * @ORM\Table(name="products_features")
  */
-class Feature {
+class Feature implements ToArrayInterface {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -97,5 +98,17 @@ class Feature {
      */
     public function setProduct(Product $product) {
         $this->product = $product;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() {
+        return [
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'advantages'    => $this->advantages,
+            'disadvantages' => $this->disadvantages
+        ];
     }
 }

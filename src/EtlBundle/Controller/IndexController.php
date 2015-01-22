@@ -2,7 +2,11 @@
 
 namespace EtlBundle\Controller;
 
+use EtlBundle\Logic\ObjectToArray;
+use League\Csv\Writer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use EtlBundle\Entity\Product;
@@ -14,6 +18,7 @@ use Exception;
  */
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class IndexController
@@ -101,5 +106,42 @@ class IndexController extends Controller {
             'success'  => $success,
             'messages' => $messages
         ];
+    }
+
+    /**
+     * @Route("/product/csv/{id}", name="product_csv",
+     *      requirements={"id"="\d+"}
+     * )
+     * @ParamConverter()
+     *
+     * @param Product $product
+     * @return Response
+     */
+    public function csvAction(Product $product) {
+        $array = ObjectToArray::toArray($product);
+        $array = [];
+
+        $csv = Writer::createFromFileObject(new \SplTempFileObject());
+        $csv->setDelimiter(';');
+
+        $csv->insertOne($product->toArray());
+        $csv->insertOne($product->getImage()->toArray());
+
+        foreach ($product->getFeatures() as $feature) {
+            $csv->insertOne($feature->toArray());
+        }
+
+        foreach ($product->getComments() as $comment) {
+            $csv->insertOne($comment->toArray());
+            foreach ($comment->getReviews() as $review) {
+                $csv->insertOne($review->toArray());
+            }
+        }
+
+        $csv->output('products.csv');
+
+        $response = new Response();
+
+        return $response;
     }
 }

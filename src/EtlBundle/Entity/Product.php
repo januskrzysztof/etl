@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use EtlBundle\Entity\Product\Comment;
 use EtlBundle\Entity\Product\Feature;
+use EtlBundle\Logic\ObjectToArray;
 
 /**
  * Class Product
@@ -14,7 +15,7 @@ use EtlBundle\Entity\Product\Feature;
  * @ORM\Entity(repositoryClass="EtlBundle\Repository\ProductRepository")
  * @ORM\Table(name="products")
  */
-class Product {
+class Product implements ToArrayInterface {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -149,5 +150,16 @@ class Product {
             }
         }
         return $comments;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() {
+        return [
+            'id'       => $this->id,
+            'name'     => $this->name,
+//            'image'    => $this->image->toArray(),
+        ];
     }
 }
