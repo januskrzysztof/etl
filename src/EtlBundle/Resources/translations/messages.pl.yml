@@ -17,6 +17,7 @@ success:
   productDeleted: Produkt: '%name%' został prawidłowo usunięty!
 
 generate_again: Wygeneruj jeszcze raz
+products_saved_in_db: Produkty zapisane już w bazie
 
 advantages: Zalety
 disadvantages: Wady

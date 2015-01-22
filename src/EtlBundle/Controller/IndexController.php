@@ -25,7 +25,11 @@ class IndexController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        return array();
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+
+        return array(
+            'products' => $repository->findAll()
+        );
     }
 
     /**
