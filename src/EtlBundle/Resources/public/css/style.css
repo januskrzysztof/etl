@@ -16,8 +16,68 @@ body,html {
     overflow: hidden;
 }
 
+.tab-content {
+    padding: 10px 0px;
+}
+
 .copyright {
     font-size: 11px;
     padding-left: 20px;
     color: #B5B5B5;
+}
+
+.advantages {
+    color: #6e9b26;
+}
+.disadvantages {
+    color: #e71226;
+}
+
+.product h2.product-name {
+    margin-top: 0px;
+}
+
+.product-features .product-feature {
+    padding: 10px 0px;
+}
+.product-feature .feature-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.product-feature .feature-review {
+    width: 100%;
+    background: #f2f5f7;
+    height: 15px;
+    overflow: hidden;
+}
+.feature-review div {
+    height: inherit;
+}
+.feature-review.feature-advantages div {
+    background: #6e9b26;
+    float: right;
+}
+.feature-review.feature-disadvantages div {
+    background: #e71226;
+    float: left;
+}
+
+.product-reviews .comment {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.comment .comment-content {
+    padding-left: 20px;
+    border-left: 1px solid #d1d1d1;
+}
+.comment .comment-author-info p {
+    margin: 0;
+    padding: 0;
+}
+.comment-author-info .author, .comment-author-info .date {
+    color: #777;
+    font-style: italic;
 }
