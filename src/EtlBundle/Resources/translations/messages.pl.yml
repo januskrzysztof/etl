@@ -1,6 +1,8 @@
 header:
   title: ETL - produkty (Zadanie 2)
 
+search: Szukaj!
+link_back: << Powrót
 content:
   generate: Generowanie raportu
 
@@ -18,3 +20,8 @@ comment:
   date: dnia %date% r.
   buy_confirmed: Opinie potwierdzone zakupem
   not_confirmed: Opinie
+
+form:
+  name:
+    label: Lub wpisz nazwę produktu i znajdź pierwszy z nich
+    placeholder: Nazwa produktu

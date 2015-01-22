@@ -3,6 +3,7 @@
 namespace EtlBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use EtlBundle\Entity\Product;
 use EtlBundle\Logic\Mappers\Ceneo\CeneoMapperParser;
@@ -28,7 +29,15 @@ class IndexController extends Controller {
     }
 
     /**
-     * @Route("/generate/{name}", name="generate")
+     * @Route("/product/generate/form", name="product_form_generate")
+     */
+    public function formAction(Request $request) {
+        $name = $request->get('product-name');
+        return $this->redirect($this->generateUrl('product_generate', ['name' => $name]));
+    }
+
+    /**
+     * @Route("/generate/{name}", name="product_generate")
      * @Template()
      *
      * @param $name
@@ -39,13 +48,14 @@ class IndexController extends Controller {
         $repository = $this->getDoctrine()->getRepository(Product::class);
 
         if ($repository->productExists($name)) {
-//            $product = $repository->getProduct($name);
             $product = $repository->findOneBy(['name' => $name]);
         } else {
             $mapper  = new CeneoMapperParser($name);
             $product = $mapper->parse();
 
-            $repository->save($product);
+            if ($product !== null) {
+                $repository->save($product);
+            }
         }
 
         return array(

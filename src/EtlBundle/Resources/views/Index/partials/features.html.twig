@@ -5,6 +5,7 @@
     </div>
     {% for feature in product.features %}
         {% set sum = feature.advantages + feature.disadvantages %}
+        {% set sum = sum <= 0 ? 1 : sum %}
         <div class="row product-feature">
             <div class="col-md-4">
                 <div class="feature-review feature-advantages">

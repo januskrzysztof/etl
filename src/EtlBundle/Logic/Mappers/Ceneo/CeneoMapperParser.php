@@ -55,14 +55,18 @@ class CeneoMapperParser implements MapperParserInterface {
         $list = $this->first('.category-list-body', $html);
 
         $product = new Product();
-        $product->setName($this->item);
         try {
             /** @var simple_html_dom $item */
             $item = $this->first('.cat-prod-row-foto', $this->first('.cat-prod-row', $list))->firstChild();
             $url  = self::$url.$item->href;
             $html = file_get_html($url);
 
+            if ($html == null) {
+                return null;
+            }
+
             $product->setImage(new File($item->firstChild()->attr['src']));
+            $product->setName($html->find('h1[class=product-name]', 0)->innertext);
 
             $featuresItems = $this->first('.product-features', $html);
             foreach ($featuresItems->find('.js_product-feature-row') as $featureItem) {
@@ -88,6 +92,7 @@ class CeneoMapperParser implements MapperParserInterface {
      * @param simple_html_dom $html
      */
     private function getNextComments(Product $product, $html, $counter = 0) {
+        /** @var simple_html_dom $nextItem */
         $nextItem = $html->find('li[class=arrow-next]', 0);
         if ($nextItem !== null) {
             $href = $nextItem->firstChild()->attr['href'];

@@ -17,7 +17,7 @@ body,html {
 }
 
 .tab-content {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 .copyright {
@@ -34,11 +34,11 @@ body,html {
 }
 
 .product h2.product-name {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .product-features .product-feature {
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 .product-feature .feature-name {
     text-align: center;
@@ -80,4 +80,8 @@ body,html {
 .comment-author-info .author, .comment-author-info .date {
     color: #777;
     font-style: italic;
+}
+
+form {
+    padding: 20px 0;
 }

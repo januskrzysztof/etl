@@ -3,7 +3,19 @@
 {% block body %}
     <h4>{{ "content.generate"|trans }}</h4>
 
-    <a href="{{ path("generate", {"name": "iPhone 5S szary"}) }}" class="btn btn-success">iPhone 5S szary</a>
-    <a href="{{ path("generate", {"name": "Nikon D32000 czarny"}) }}" class="btn btn-info">Nikon D32000 czarny</a>
-    <a href="{{ path("generate", {"name": "Toshiba P75-A7200"}) }}" class="btn btn-danger">Toshiba P75-A7200</a>
+    <a href="{{ path("product_generate", {"name": "iPhone 5S szary"}) }}" class="btn btn-success">iPhone 5S szary</a>
+    <a href="{{ path("product_generate", {"name": "Nikon D32000 czarny"}) }}" class="btn btn-info">Nikon D32000 czarny</a>
+    <a href="{{ path("product_generate", {"name": "Toshiba P75-A7200"}) }}" class="btn btn-danger">Toshiba P75-A7200</a>
+
+    <form method="post" action="{{ path('product_form_generate') }}" role="form" class="form-horizontal">
+        <fieldset class="col-md-12">
+            <div class="form-group">
+                <label>{{ "form.name.label"|trans }}</label>
+                <input type="text" class="form-control input-lg" name="product-name" placeholder="{{ 'form.name.placeholder'|trans }}"/>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">{{ "search"|trans }}</button>
+            </div>
+        </fieldset>
+    </form>
 {% endblock %}
