@@ -26,6 +26,12 @@ body,html {
     color: #B5B5B5;
 }
 
+.back_link {
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: block;
+}
+
 .advantages {
     color: #6e9b26;
 }

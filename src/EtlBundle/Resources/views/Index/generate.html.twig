@@ -4,7 +4,7 @@
 {% block body %}
 <div class="product">
     {% if product != null %}
-        <a href="{{ path('home') }}">{{ 'link_back'|trans }}</a>
+    <a href="{{ path('home') }}" class="back_link">{{ 'link_back'|trans }}</a>
     <div class="row">
         <div class="col-md-3"><img src="{{ product.image.uri }}" /></div>
         <div class="col-md-9">
