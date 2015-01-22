@@ -87,6 +87,20 @@ body,html {
     color: #777;
     font-style: italic;
 }
+.products .product {
+    border-bottom: 1px solid #d1d1d1;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.products .product .image {
+    padding-right: 10px;
+    border-right: 1px solid #d1d1d1;
+}
+.products .product .image img {
+    width: 100px;
+}
+.products .product .info {
+}
 
 form {
     padding: 20px 0;
