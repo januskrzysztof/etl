@@ -1,0 +1,37 @@
+{% import _self as helper %}
+
+<div class="row comment">
+    <header class="col-md-3 comment-header">
+        <div class="comment-author-info">
+            <p class="author">{{ 'comment.author'|trans({'%author%': comment.author}) }}</p>
+            <p class="date">{{ 'comment.date'|trans({'%date%': comment.createdAt.format('d.m.Y')}) }}</p>
+        </div>
+        <div class="comment-useful">{{ 'comment.useful'|trans({'%useful%': comment.useful}) }}</div>
+    </header>
+    <div class="col-md-8 comment-content">
+        {{ comment.comment }}
+
+        {% set advantages    = comment.advantageReviews %}
+        {% set disadvantages = comment.disadvantageReviews %}
+
+        {% if advantages|length > 0 %}
+        <div class="product-advantages">
+            <h4 class="advantages">{{ 'advantages'|trans }}</h4>
+            {{ helper.reviews(advantages) }}
+        </div>
+        {% endif %}
+        {% if disadvantages|length > 0 %}
+        <div class="product-advantages">
+            <h4 class="disadvantages">{{ 'disadvantages'|trans }}</h4>
+            {{ helper.reviews(advantages) }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% macro reviews(reviews) %}<ul>
+    {% for review in reviews %}
+        <li>{{ review.review }}</li>
+    {% endfor %}
+    </ul>
+{% endmacro %}

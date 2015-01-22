@@ -1,8 +1,9 @@
 <?php
 
-namespace EtlBundle\Entity;
+namespace EtlBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
+use EtlBundle\Entity\Product;
 
 /**
  * Class Feature
@@ -33,16 +34,16 @@ class Feature {
      *
      * @var int
      */
-    protected $pro = 0;
+    protected $advantages = 0;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var int
      */
-    protected $con = 0;
+    protected $disadvantages = 0;
     /**
-     * @ORM\OneToMany(targetEntity="EtlBundle\Entity\Product", mappedBy="features")
+     * @ORM\ManyToOne(targetEntity="EtlBundle\Entity\Product", inversedBy="features")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      *
      * @var Product
@@ -56,22 +57,39 @@ class Feature {
         $this->name = $name;
     }
 
+    /**
+     * @return string
+     */
     public function getName() {
         return $this->name;
     }
 
     /**
-     * @param int $pro
+     * @param $advantages
      */
-    public function setPro($pro) {
-        $this->pro = (int) $pro;
+    public function setAdvantages($advantages) {
+        $this->advantages = (int) $advantages;
     }
 
     /**
-     * @param int $con
+     * @return int
      */
-    public function setCon($con) {
-        $this->con = (int) $con;
+    public function getAdvantages() {
+        return $this->advantages;
+    }
+
+    /**
+     * @param $disadvantages
+     */
+    public function setDisadvantages($disadvantages) {
+        $this->disadvantages = (int) $disadvantages;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDisadvantages() {
+        return $this->disadvantages;
     }
 
     /**

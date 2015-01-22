@@ -3,3 +3,18 @@ header:
 
 content:
   generate: Generowanie raportu
+
+
+product:
+  features: Cechy produktu
+  reviews: Opinie produktu
+
+advantages: Zalety
+disadvantages: Wady
+
+comment:
+  useful: Pryzdatność opinii: %useful%%
+  author: Opinię napisał(a) %author%
+  date: dnia %date% r.
+  buy_confirmed: Opinie potwierdzone zakupem
+  not_confirmed: Opinie

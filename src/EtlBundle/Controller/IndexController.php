@@ -2,8 +2,11 @@
 
 namespace EtlBundle\Controller;
 
-use EtlBundle\Logic\Mappers\Ceneo\CeneoMapperParser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use EtlBundle\Entity\Product;
+use EtlBundle\Logic\Mappers\Ceneo\CeneoMapperParser;
+use Exception;
 
 /**
  * Annotation
@@ -27,17 +30,37 @@ class IndexController extends Controller {
     /**
      * @Route("/generate/{name}", name="generate")
      * @Template()
+     *
+     * @param $name
+     * @return array
+     * @throws Exception
      */
     public function generateAction($name) {
-        $mapper  = new CeneoMapperParser($name);
-        $product = $mapper->parse();
+        $repository = $this->getDoctrine()->getRepository(Product::class);
 
-        var_dump($product->getFeatures());
-        var_dump($product->getComments());
+        if ($repository->productExists($name)) {
+//            $product = $repository->getProduct($name);
+            $product = $repository->findOneBy(['name' => $name]);
+        } else {
+            $mapper  = new CeneoMapperParser($name);
+            $product = $mapper->parse();
+
+            $repository->save($product);
+        }
 
         return array(
             'name'    => $name,
             'product' => $product
         );
+    }
+
+    /**
+     * @Route("/product/delete/{$name}", name="product_delete")
+     *
+     * @param string $name
+     * @return Response
+     */
+    public function deleteAction($name) {
+        return new Response("Delete product: ".$name);
     }
 }

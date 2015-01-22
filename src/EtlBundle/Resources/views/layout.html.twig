@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
-        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap.min.css", absolute=true) }}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap-theme.min.css", absolute=true) }}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{{ asset('bundles/framework/css/structure.css', absolute=true) }}"/>#}
-        {#<link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/style.css", absolute=true) }}"/>#}
+        <link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap.min.css", absolute=true) }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/bootstrap-theme.min.css", absolute=true) }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/framework/css/structure.css', absolute=true) }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset("bundles/etl/css/style.css", absolute=true) }}"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico', absolute=true) }}" />
 </head>
@@ -26,6 +26,7 @@
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('bundles/etl/js/jquery-1.11.2.min.js', absolute=true) }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/etl/js/bootstrap.min.js', absolute=true) }}"></script>
+    <script type="text/javascript" style="{{ asset('bundles/etl/js/npm.js', absolute=true) }}"></script>
 {% endblock %}
 </body>
 </html>

@@ -1,0 +1,24 @@
+<div class="product-features">
+    <div class="row">
+        <div class="col-md-6 advantages text-left"><h4>{{ "advantages"|trans }}</h4></div>
+        <div class="col-md-6 disadvantages text-right"><h4>{{ "disadvantages"|trans }}</h4></div>
+    </div>
+    {% for feature in product.features %}
+        {% set sum = feature.advantages + feature.disadvantages %}
+        <div class="row product-feature">
+            <div class="col-md-4">
+                <div class="feature-review feature-advantages">
+                    <div style="width: {{ (feature.advantages/sum)*100 }}%;"></div>
+                </div>
+                <div class="advantages text-right"><b>{{ feature.advantages }}</b></div>
+            </div>
+            <div class="col-md-4 feature-name">{{ feature.name }}</div>
+            <div class="col-md-4">
+                <div class="feature-review feature-disadvantages">
+                    <div style="width: {{ (feature.disadvantages/sum)*100 }}%;"></div>
+                </div>
+                <div class="disadvantages text-left"><b>{{ feature.disadvantages }}</b></div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

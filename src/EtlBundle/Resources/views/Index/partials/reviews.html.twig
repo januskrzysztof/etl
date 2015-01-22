@@ -1,0 +1,14 @@
+<div class="product-reviews-container">
+    <h3>{{ 'comment.buy_confirmed'|trans }}</h3>
+    <div class="product-reviews buy-confirmed">
+        {% for comment in product.buyConfirmedComments %}
+            {% include '@Etl/Index/partials/review.html.twig' with {'comment': comment} %}
+        {% endfor %}
+    </div>
+    <h3>{{ 'comment.not_confirmed'|trans }}</h3>
+    <div class="product-reviews not-confirmed">
+        {% for comment in product.notConfirmedComments %}
+            {% include '@Etl/Index/partials/review.html.twig' with {'comment': comment} %}
+        {% endfor %}
+    </div>
+</div>

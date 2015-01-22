@@ -1,6 +1,30 @@
 {% extends '@Etl/layout.html.twig' %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
-{{ name }}
+<div class="product">
+    <div class="row">
+        <div class="col-md-3"><img src="{{ product.image.uri }}" /></div>
+        <div class="col-md-9">
+            <h2 class="product-name">{{ product.name }}</h2>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active">
+                    <a href="#features" role="tab" data-toggle="tab" aria-controls="features">{{ 'product.features'|trans }}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#reviews" role="tab" data-toggle="tab" aria-controls="reviews">{{ 'product.reviews'|trans }}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="features">
+                    {% include '@Etl/Index/partials/features.html.twig' %}
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="reviews">
+                    {% include '@Etl/Index/partials/reviews.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
